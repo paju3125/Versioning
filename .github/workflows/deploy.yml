@@ -29,6 +29,10 @@ jobs:
         run: |
           current_tag=${{ env.tag }}
           IFS='.' read -r -a parts <<< "$current_tag"
+          if [ ${#parts[@]} -ne 3 ]; then
+            echo "Invalid tag format: $current_tag"
+            exit 1
+          fi
           ((parts[2]++))
           new_tag="${parts[0]}.${parts[1]}.${parts[2]}"
           echo "new_tag=$new_tag" >> $GITHUB_ENV
