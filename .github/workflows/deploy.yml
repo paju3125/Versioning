@@ -36,5 +36,7 @@ jobs:
           
       - name: Tag version and deploy
         run: |
+          git config --global user.name paju3125
+          git config --global user.email "prajvalgandhi483@gmail.com"
           git tag -a ${{ github.ref }} -m "Release version ${{ github.ref }}"
           git push origin ${{ github.ref }}
